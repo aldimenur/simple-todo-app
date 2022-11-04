@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import TotalItems from "./TotalItems";
 
 const TODOS = [
   {
@@ -25,7 +26,6 @@ const TodoLists = () => {
     <>
       <Box
         sx={{
-          width: 600,
           height: 600,
           backgroundColor: "#EDEDED",
           borderRadius: 4,

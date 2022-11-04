@@ -14,7 +14,6 @@ const AddTodo = () => {
     <>
       <Box
         sx={{
-          width: 400,
           height: "auto",
           backgroundColor: "#EDEDED",
           borderRadius: 4,
