@@ -1,13 +1,12 @@
 import "./App.css";
+import AddTodo from "./components/AddTodo";
+import TodoLists from "./components/TodoLists";
 
 function App() {
   return (
     <div className="Container">
-      <div className="box__app">
-        <div className="box__title">
-          <h1 style={{ color: "#E26868" }}>Simple Todo App</h1>
-        </div>
-      </div>
+      <AddTodo />
+      <TodoLists />
     </div>
   );
 }
