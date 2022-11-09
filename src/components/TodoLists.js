@@ -6,22 +6,32 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import TotalItems from "./TotalItems";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { deleteTodo } from "../redux/todoSlice";
 
-const TODOS = [
-  {
-    title: "Title Here",
-    content: (
-      <>
-        is simply dummy text of the printing and typesetting industry. Lorem
-        Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a
-        type specimen book.
-      </>
-    ),
-  },
-];
+// const TODOS = [
+//   {
+//     title: "Title Here",
+//     content: (
+//       <>
+//         is simply dummy text of the printing and typesetting industry. Lorem
+//         Ipsum has been the industry's standard dummy text ever since the 1500s,
+//         when an unknown printer took a galley of type and scrambled it to make a
+//         type specimen book.
+//       </>
+//     ),
+//   },
+// ];
 
 const TodoLists = () => {
+  const dispatch = useDispatch();
+  const TODOS = useSelector((state) => state.todos);
+
+  const handleDelete = (desc) => {
+    dispatch(deleteTodo(desc));
+  };
+
   return (
     <>
       <Box
@@ -72,7 +82,7 @@ const TodoLists = () => {
                     <Typography variant="h6" fontWeight={600}>
                       {e.title}
                     </Typography>
-                    <Typography>{e.content}</Typography>
+                    <Typography>{e.desc}</Typography>
                   </Box>
                   <Box
                     sx={{ display: "flex", flexDirection: "column", gap: 1 }}

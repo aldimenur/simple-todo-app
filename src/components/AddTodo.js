@@ -5,10 +5,25 @@ import "./AddTodo.css";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../redux/todoSlice";
+import FormGroup from "@mui/material/FormGroup";
 
 const AddTodo = () => {
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
+  const [title, setTitle] = useState();
+  const [desc, setDesc] = useState();
+
+  const dispatch = useDispatch();
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    dispatch(
+      addTodo({
+        title: title,
+        desc: desc,
+      })
+    );
+  };
 
   return (
     <>
@@ -26,41 +41,60 @@ const AddTodo = () => {
           >
             Add Todo
           </Typography>
-
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 2,
-            }}
-          >
-            <TextField
-              id="outlined-basic"
-              label="Title"
-              variant="outlined"
-              size="small"
-              fullWidth
-              onChange={(title) => {
-                setTitle(title.target.value);
-              }}
-            />
-            <TextField
-              id="outlined-basic"
-              label="Description"
-              variant="outlined"
-              size="small"
-              fullWidth
-              multiline
-              rows={4}
-              onChange={(desc) => {
-                setDesc(desc.target.value);
-              }}
-            />
-            <Button variant="contained" disableElevation>
-              Add
-            </Button>
-          </Box>
+          <form onSubmit={onSubmit}>
+            <FormGroup>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 2,
+                }}
+              >
+                <TextField
+                  id="outlined-basic"
+                  label="Title"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  value={title}
+                  onChange={(title) => {
+                    setTitle(title.target.value);
+                  }}
+                />
+                <TextField
+                  name="desc"
+                  id="outlined-basic"
+                  label="Description"
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  multiline
+                  rows={4}
+                  value={desc}
+                  onChange={(desc) => {
+                    setDesc(desc.target.value);
+                  }}
+                />
+                <Button
+                  variant="contained"
+                  disableElevation
+                  type="submit"
+                  onSubmit={onSubmit}
+                >
+                  Add
+                </Button>
+              </Box>
+            </FormGroup>
+            {/* <div>
+              <input
+                type="text"
+                value={value}
+                onChange={(event) => setValue(event.target.value)}
+              />
+              <button type="submit">Submit</button>
+            </div> */}
+          </form>
         </Box>
       </Box>
     </>
