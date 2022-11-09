@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const todoSlice = createSlice({
   name: "todos",
   initialState: [
-    { id: 1, title: "todo1", desc: "ANJAY MABAR", completed: false },
-    { id: 2, title: "todo2", desc: "ANJAY MABAR", completed: false },
-    { id: 3, title: "todo3", desc: "ANJAY MABAR", completed: true },
+    { id: 1, title: "todo1", desc: "desc 1", completed: false },
+    { id: 2, title: "todo2", desc: "desc 2", completed: false },
+    { id: 3, title: "todo3", desc: "desc 3", completed: true },
   ],
   reducers: {
     addTodo: (state, action) => {
@@ -18,8 +18,7 @@ const todoSlice = createSlice({
       state.push(newTodo);
     },
     deleteTodo: (state, action) => {
-      const index = state.findIndex((todo) => todo.id === action.payload.id);
-      state[index].desc = action.payload.desc;
+      return state.filter((todo) => todo.id !== action.payload.id);
     },
   },
 });

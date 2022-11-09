@@ -28,8 +28,8 @@ const TodoLists = () => {
   const dispatch = useDispatch();
   const TODOS = useSelector((state) => state.todos);
 
-  const handleDelete = (desc) => {
-    dispatch(deleteTodo(desc));
+  const handleDelete = () => {
+    dispatch(deleteTodo());
   };
 
   return (
@@ -87,7 +87,12 @@ const TodoLists = () => {
                   <Box
                     sx={{ display: "flex", flexDirection: "column", gap: 1 }}
                   >
-                    <Button variant="contained" color="error" disableElevation>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      disableElevation
+                      onClick={handleDelete}
+                    >
                       Delete
                     </Button>
                     <Button
