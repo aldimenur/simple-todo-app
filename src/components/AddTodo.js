@@ -10,19 +10,27 @@ import { addTodo } from "../redux/todoSlice";
 import FormGroup from "@mui/material/FormGroup";
 
 const AddTodo = () => {
-  const [title, setTitle] = useState();
-  const [desc, setDesc] = useState();
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [id, setId] = useState();
 
   const dispatch = useDispatch();
 
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(
-      addTodo({
-        title: title,
-        desc: desc,
-      })
-    );
+
+    if (title !== "" && desc !== "") {
+      dispatch(
+        addTodo({
+          title: title,
+          desc: desc,
+        })
+      );
+      setTitle("");
+      setDesc("");
+    } else {
+      alert("Title and Description must be filled");
+    }
   };
 
   return (

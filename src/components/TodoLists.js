@@ -9,6 +9,7 @@ import TotalItems from "./TotalItems";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../redux/todoSlice";
+import TodoItem from "./TodoItem";
 
 // const TODOS = [
 //   {
@@ -27,10 +28,6 @@ import { deleteTodo } from "../redux/todoSlice";
 const TodoLists = () => {
   const dispatch = useDispatch();
   const TODOS = useSelector((state) => state.todos);
-
-  const handleDelete = () => {
-    dispatch(deleteTodo());
-  };
 
   return (
     <>
@@ -64,47 +61,8 @@ const TodoLists = () => {
             </Typography>
           </Box>
           <Box sx={{ paddingX: 2 }}>
-            {TODOS.map((e, index) => {
-              return (
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    padding: 1,
-                    borderRadius: 2,
-                    outline: "1px solid",
-                    my: 2,
-                  }}
-                  key={index}
-                >
-                  <Box sx={{ width: "80%" }}>
-                    <Typography variant="h6" fontWeight={600}>
-                      {e.title}
-                    </Typography>
-                    <Typography>{e.desc}</Typography>
-                  </Box>
-                  <Box
-                    sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-                  >
-                    <Button
-                      variant="contained"
-                      color="error"
-                      disableElevation
-                      onClick={handleDelete}
-                    >
-                      Delete
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      disableElevation
-                    >
-                      Edit
-                    </Button>
-                  </Box>
-                </Box>
-              );
+            {TODOS.map((todo) => {
+              return <TodoItem key={todo.id} todo={todo} />;
             })}
           </Box>
         </Box>
